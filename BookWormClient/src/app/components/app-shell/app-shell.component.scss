@@ -1,0 +1,11 @@
+.app-frame {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+}
+
+.router-outlet {
+  flex: 1 1 auto;
+}
