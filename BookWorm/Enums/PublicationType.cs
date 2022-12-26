@@ -6,7 +6,6 @@
         Newspaper,
         Magazine,
         Document,
-        CD,
-        DVD
+        Record
     }
 }

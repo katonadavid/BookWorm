@@ -1,1 +1,13 @@
-<p-tabMenu [model]="items"></p-tabMenu>
+<mat-toolbar>
+  <div class="brand">
+    <mat-icon class="material-icons-outlined">menu_book</mat-icon>
+    <span>{{ title }}</span>
+  </div>
+  <div class="spacer"></div>
+  <div class="menu-items">
+    <button mat-button disableRipple="true" *ngFor="let item of items" [routerLink]="item.routerLink">
+      <mat-icon class="material-icons-outlined">{{ item.icon }}</mat-icon>
+      {{ item.label }}
+    </button>
+  </div>
+</mat-toolbar>

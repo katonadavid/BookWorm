@@ -1,0 +1,21 @@
+.brand {
+  display: flex;
+  align-items: center;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-icon {
+  margin-right: 8px;
+}
+
+.menu-items {
+  display: flex;
+
+  button {
+    font-size: 16px;
+    margin-right: 16px;
+  }
+}

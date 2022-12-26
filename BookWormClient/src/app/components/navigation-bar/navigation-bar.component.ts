@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { NavigationService } from 'src/app/services/navigation.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -8,28 +9,13 @@ import { MenuItem } from 'primeng/api';
 })
 export class NavigationBarComponent implements OnInit {
 
-  items: MenuItem[] = [];
+  items: any[] = [];
+  title = environment.appTitle;
 
-  constructor() { }
+  constructor(private navigationService: NavigationService) { }
 
   ngOnInit(): void {
-    this.items = [
-      {
-        label: 'Home',
-        routerLink: '/home',
-        icon: 'pi pi-home'
-      },
-      {
-        label: 'Publications',
-        routerLink: '/publications',
-        icon: 'pi pi-book'
-      },
-      {
-        label: 'Authors',
-        routerLink: '/authors',
-        icon: 'pi pi-pencil'
-      }
-    ];
+    this.items = this.navigationService.getNavigationItems();
   }
 
 }

@@ -1,25 +1,37 @@
 import { Injectable } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+
+export interface NavigationItem {
+  label: string;
+  routerLink: string;
+  icon?: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class NavigationService {
 
-  private navigationItems: MenuItem[] = [
+  private navigationItems: NavigationItem[] = [
     {
       label: 'Home',
-      routerLink: '/home'
+      routerLink: '/home',
+      icon: 'home'
     },
     {
       label: 'Publications',
-      routerLink: '/publications'
+      routerLink: '/publications',
+      icon: 'book'
+    },
+    {
+      label: 'Authors',
+      routerLink: '/authors',
+      icon: 'attribution'
     }
   ];
 
   constructor() { }
 
-  getNavigationItems(): MenuItem[] {
+  getNavigationItems(): any[] {
     return this.navigationItems;
   }
 }

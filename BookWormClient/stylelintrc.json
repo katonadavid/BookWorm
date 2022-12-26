@@ -1,0 +1,36 @@
+{
+  "extends": "stylelint-config-standard-scss",
+  "plugins": ["stylelint-no-unsupported-browser-features"],
+  "rules": {
+    "alpha-value-notation": null,
+    "color-function-notation": null,
+    "color-hex-length": "long",
+    "declaration-colon-newline-after": null,
+    "import-notation": null,
+    "length-zero-no-unit": null,
+    "max-line-length": [120, { "ignore": "comments" }],
+    "no-descending-specificity": null,
+    "selector-type-no-unknown": [
+      true,
+      {
+        "ignoreTypes": ["/^app-/", "/^gridster/", "/^mat-/", "/^ngx-/"]
+      }
+    ],
+    "selector-pseudo-element-no-unknown": [true, { "ignorePseudoElements": ["ng-deep"] }],
+    "string-quotes": null,
+    "scss/at-mixin-argumentless-call-parentheses": null,
+    "scss/at-import-partial-extension": null,
+    "scss/double-slash-comment-empty-line-before": null,
+    "scss/dollar-variable-empty-line-before": [
+      "always",
+      { "except": ["first-nested", "after-comment", "after-dollar-variable"], "ignore": ["after-comment"] }
+    ],
+    "plugin/no-unsupported-browser-features": [
+      true,
+      {
+        "severity": "warning",
+        "ignorePartialSupport": true
+      }
+    ]
+  }
+}
