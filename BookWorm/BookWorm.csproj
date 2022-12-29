@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>disable</Nullable>
@@ -8,12 +7,34 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.8" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.8">
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.12">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.11" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ClientModels\GoogleBook.ts">
+      <CustomToolNamespace>Models\DTOs\GoogleBook.cs</CustomToolNamespace>
+    </None>
+    <None Update="ClientModels\ImageLinks.ts">
+      <CustomToolNamespace>Models\DTOs\ImageLinks.cs</CustomToolNamespace>
+    </None>
+    <None Update="ClientModels\VolumeInfo.ts">
+      <CustomToolNamespace>Models\DTOs\VolumeInfo.cs</CustomToolNamespace>
+    </None>
+  </ItemGroup>
+
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+	    <Exec Command="del $(ProjectDir)..\BookWormClient\src\app\models\*.ts&#xD;&#xA;xcopy $(ProjectDir)ClientModels\*.ts $(ProjectDir)..\BookWormClient\src\app\models /Y&#xD;&#xA;&#xD;&#xA;" />
+    </Target>
+
 
 </Project>

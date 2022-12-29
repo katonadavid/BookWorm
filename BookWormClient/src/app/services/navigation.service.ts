@@ -26,6 +26,11 @@ export class NavigationService {
       label: 'Authors',
       routerLink: '/authors',
       icon: 'attribution'
+    },
+    {
+      label: 'Get Data',
+      routerLink: '/get-data',
+      icon: 'storage'
     }
   ];
 

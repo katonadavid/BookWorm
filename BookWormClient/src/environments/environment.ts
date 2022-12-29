@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:5010/',
-  appTitle: 'BookWorm'
+  appTitle: 'BookWorm',
+  googleApiKey: 'AIzaSyDRi5DB0V5OQpoMb47zSeVgvPMkJuAnIpA'
 };
 
 /*

@@ -1,0 +1,16 @@
+<button mat-button-raised (click)="saveBooks()">Save selected books to DB</button>
+<div class="book-info" *ngFor="let book of books">
+  <h1>
+    <input type="checkbox" (change)="bookChecked($event, book.id)">
+    {{ book.volumeInfo.title }}
+  </h1>
+<h3>
+  <span *ngFor="let author of book.volumeInfo.authors">{{ author }} </span>
+</h3>
+<h4>{{ book.volumeInfo.publishedDate }}</h4>
+<h4>
+  <span *ngFor="let category of book.volumeInfo.categories">{{ category }} </span>
+</h4>
+<img [src]="book.volumeInfo.imageLinks.thumbnail">
+<p>{{ book.volumeInfo.description }}</p>
+</div>

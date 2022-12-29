@@ -14,6 +14,8 @@ import { NavigationBarComponent } from './components/navigation-bar/navigation-b
 import { NavShellComponent } from './components/nav-shell/nav-shell.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AuthorsComponent } from './pages/authors/authors.component';
+import { GetDataComponent } from './pages/get-data/get-data.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,12 +25,14 @@ import { AuthorsComponent } from './pages/authors/authors.component';
     NavigationBarComponent,
     NavShellComponent,
     FooterComponent,
-    AuthorsComponent
+    AuthorsComponent,
+    GetDataComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    HttpClientModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule

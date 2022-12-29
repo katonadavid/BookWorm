@@ -10,7 +10,8 @@ namespace BookWorm
 
         }
         public DbSet<Publication> Publications { get; set; }
-        public DbSet<Author> Authors { get; set; }
+        public DbSet<Creator> Creators { get; set; }
         public DbSet<Publisher> Publishers { get; set; }
+        public DbSet<BookWorm.Models.Book> Book { get; set; }
     }
 }
