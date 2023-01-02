@@ -1,5 +1,6 @@
 ﻿namespace BookWorm.Enums
 {
+    [TypewriterEnabled]
     public enum PublicationType
     {
         Book,

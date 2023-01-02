@@ -4,6 +4,7 @@ using BookWorm;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookWorm.Migrations
 {
     [DbContext(typeof(BookWormContext))]
-    partial class BookWormContextModelSnapshot : ModelSnapshot
+    [Migration("20230101011412_PublicationYear")]
+    partial class PublicationYear
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,9 +47,14 @@ namespace BookWorm.Migrations
                     b.Property<int>("Nationality")
                         .HasColumnType("int");
 
+                    b.Property<int?>("PublicationId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Creators", (string)null);
+                    b.HasIndex("PublicationId");
+
+                    b.ToTable("Creators");
                 });
 
             modelBuilder.Entity("BookWorm.Models.Publication", b =>
@@ -57,9 +65,6 @@ namespace BookWorm.Migrations
                         .HasDefaultValueSql("NEXT VALUE FOR [PublicationSequence]");
 
                     SqlServerPropertyBuilderExtensions.UseSequence(b.Property<int>("Id"));
-
-                    b.Property<string>("ImageLink")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Language")
                         .HasColumnType("int");
@@ -98,22 +103,7 @@ namespace BookWorm.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Publishers", (string)null);
-                });
-
-            modelBuilder.Entity("CreatorPublication", b =>
-                {
-                    b.Property<int>("CreatorsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PublicationsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CreatorsId", "PublicationsId");
-
-                    b.HasIndex("PublicationsId");
-
-                    b.ToTable("CreatorPublication", (string)null);
+                    b.ToTable("Publishers");
                 });
 
             modelBuilder.Entity("BookWorm.Models.Book", b =>
@@ -126,7 +116,7 @@ namespace BookWorm.Migrations
                     b.Property<int>("PageCount")
                         .HasColumnType("int");
 
-                    b.ToTable("Books", (string)null);
+                    b.ToTable("Books");
                 });
 
             modelBuilder.Entity("BookWorm.Models.Record", b =>
@@ -139,7 +129,14 @@ namespace BookWorm.Migrations
                     b.Property<int>("TrackCount")
                         .HasColumnType("int");
 
-                    b.ToTable("Records", (string)null);
+                    b.ToTable("Records");
+                });
+
+            modelBuilder.Entity("BookWorm.Models.Creator", b =>
+                {
+                    b.HasOne("BookWorm.Models.Publication", null)
+                        .WithMany("Creators")
+                        .HasForeignKey("PublicationId");
                 });
 
             modelBuilder.Entity("BookWorm.Models.Publication", b =>
@@ -151,19 +148,9 @@ namespace BookWorm.Migrations
                     b.Navigation("Publisher");
                 });
 
-            modelBuilder.Entity("CreatorPublication", b =>
+            modelBuilder.Entity("BookWorm.Models.Publication", b =>
                 {
-                    b.HasOne("BookWorm.Models.Creator", null)
-                        .WithMany()
-                        .HasForeignKey("CreatorsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BookWorm.Models.Publication", null)
-                        .WithMany()
-                        .HasForeignKey("PublicationsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Creators");
                 });
 #pragma warning restore 612, 618
         }

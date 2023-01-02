@@ -21,11 +21,35 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="ClientModels\Book.ts">
+      <CustomToolNamespace>Models\Book.cs</CustomToolNamespace>
+    </None>
+    <None Update="ClientModels\Creator.ts">
+      <CustomToolNamespace>Models\Creator.cs</CustomToolNamespace>
+    </None>
     <None Update="ClientModels\GoogleBook.ts">
       <CustomToolNamespace>Models\DTOs\GoogleBook.cs</CustomToolNamespace>
     </None>
     <None Update="ClientModels\ImageLinks.ts">
       <CustomToolNamespace>Models\DTOs\ImageLinks.cs</CustomToolNamespace>
+    </None>
+    <None Update="ClientModels\IndustryIdentifier.ts">
+      <CustomToolNamespace>Models\DTOs\IndustryIdentifier.cs</CustomToolNamespace>
+    </None>
+    <None Update="ClientModels\Language.ts">
+      <CustomToolNamespace>Enums\Language.cs</CustomToolNamespace>
+    </None>
+    <None Update="ClientModels\Nationality.ts">
+      <CustomToolNamespace>Enums\Nationality.cs</CustomToolNamespace>
+    </None>
+    <None Update="ClientModels\Publication.ts">
+      <CustomToolNamespace>Models\Publication.cs</CustomToolNamespace>
+    </None>
+    <None Update="ClientModels\PublicationType.ts">
+      <CustomToolNamespace>Enums\PublicationType.cs</CustomToolNamespace>
+    </None>
+    <None Update="ClientModels\Publisher.ts">
+      <CustomToolNamespace>Models\Publisher.cs</CustomToolNamespace>
     </None>
     <None Update="ClientModels\VolumeInfo.ts">
       <CustomToolNamespace>Models\DTOs\VolumeInfo.cs</CustomToolNamespace>

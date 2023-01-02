@@ -6,7 +6,7 @@ namespace BookWorm.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthorController : ControllerBase
+    public class AuthorsController : ControllerBase
     {
         [HttpGet]
         public IEnumerable<string> Get()

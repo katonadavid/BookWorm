@@ -1,5 +1,6 @@
 ﻿namespace BookWorm.Models
 {
+    [TypewriterEnabled]
     public class Book : Publication
     {
         public string ISBN { get; set; }

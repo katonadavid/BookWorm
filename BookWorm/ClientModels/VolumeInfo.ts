@@ -7,16 +7,19 @@
 
 
 import { ImageLinks } from './ImageLinks';
+import { IndustryIdentifier } from './IndustryIdentifier';
 
 export class VolumeInfo {
     title?: string;
-    authors?: string;
-    categories?: string;
+    authors?: string[];
+    categories?: string[];
     description?: string;
     imageLinks?: ImageLinks;
+    industryIdentifiers?: IndustryIdentifier[];
     language?: string;
     pageCount?: number;
     printType?: string;
-    publishedDate?: any;
+    publishedDate?: string;
+    publisher?: string;
     
 }

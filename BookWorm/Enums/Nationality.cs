@@ -1,7 +1,9 @@
 ﻿namespace BookWorm.Enums
 {
+    [TypewriterEnabled]
     public enum Nationality
     {
+        Unknown,
         AF,
         AL,
         DZ,

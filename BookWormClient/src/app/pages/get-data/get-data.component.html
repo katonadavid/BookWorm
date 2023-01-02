@@ -1,16 +1,33 @@
-<button mat-button-raised (click)="saveBooks()">Save selected books to DB</button>
-<div class="book-info" *ngFor="let book of books">
-  <h1>
-    <input type="checkbox" (change)="bookChecked($event, book.id)">
-    {{ book.volumeInfo.title }}
-  </h1>
-<h3>
-  <span *ngFor="let author of book.volumeInfo.authors">{{ author }} </span>
-</h3>
-<h4>{{ book.volumeInfo.publishedDate }}</h4>
-<h4>
-  <span *ngFor="let category of book.volumeInfo.categories">{{ category }} </span>
-</h4>
-<img [src]="book.volumeInfo.imageLinks.thumbnail">
-<p>{{ book.volumeInfo.description }}</p>
+<div class="content-frame">
+  <div class="query-form">
+    <mat-form-field appearance="outline">
+      <mat-label>Search query</mat-label>
+      <input type="text" matInput [(ngModel)]="queryText">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Page</mat-label>
+      <input type="number" matInput [(ngModel)]="queryPage">
+    </mat-form-field>
+    <button mat-raised-button (click)="queryBooks()">Execute query</button>
+    <button mat-raised-button (click)="saveBooks()">Save selected books to DB</button>
+  </div>
+  <div>
+      <mat-checkbox (change)="selectAllBooks($event)" [checked]="true">Select all books</mat-checkbox>
+  </div>
+  <div class="book-info" *ngFor="let book of books">
+    <h1>
+      <mat-checkbox (change)="bookChecked($event, book)">{{ book.volumeInfo?.title }}</mat-checkbox>
+    </h1>
+  <h3>
+    <span *ngFor="let author of book.volumeInfo?.authors">{{ author }} </span>
+  </h3>
+  <h4>{{ book.volumeInfo?.publishedDate }}</h4>
+  <h4>
+    <span *ngFor="let category of book.volumeInfo?.categories">{{ category }} </span>
+  </h4>
+  <div class="book-img">
+    <img [src]="book.volumeInfo?.imageLinks?.thumbnail">
+  </div>
+  <p>{{ book.volumeInfo?.description }}</p>
+  </div>
 </div>

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:5010/',
+  apiUrl: 'http://localhost:5010/api/',
   appTitle: 'BookWorm',
   googleApiKey: 'AIzaSyDRi5DB0V5OQpoMb47zSeVgvPMkJuAnIpA'
 };

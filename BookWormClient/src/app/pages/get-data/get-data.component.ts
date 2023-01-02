@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { GoogleBookModel } from 'src/app/models/google-book-model';
+import { MatCheckboxChange } from '@angular/material/checkbox';
+import { GoogleBookModel } from 'src/app/models/GoogleBook';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -7,21 +8,17 @@ import { DataService } from 'src/app/services/data.service';
   templateUrl: './get-data.component.html',
   styleUrls: ['./get-data.component.scss']
 })
-export class GetDataComponent implements OnInit {
-
+export class GetDataComponent {
   books: GoogleBookModel[] = [];
   selectedBooks: GoogleBookModel[] = [];
 
+  queryText: string;
+  queryPage: number;
+
   constructor(private dataService: DataService) {}
 
-  ngOnInit(): void {
-      this.dataService.getNewBooks('max').subscribe(booksResponse => {
-        this.books = booksResponse.items;
-      })
-  }
-
-  bookChecked(event: any, book: GoogleBookModel) {
-    if (event.target.checked) {
+  bookChecked(event: MatCheckboxChange, book: GoogleBookModel) {
+    if (event.checked) {
       console.log(book.id);
       this.selectedBooks.push(book);
     } else {
@@ -29,11 +26,22 @@ export class GetDataComponent implements OnInit {
     }
   }
 
+  selectAllBooks(event: MatCheckboxChange) {
+    event.source.checked = true;
+    this.selectedBooks.push(...this.books);
+  }
+
   saveBooks() {
     console.log(this.selectedBooks);
     this.dataService.saveBooks(this.selectedBooks).subscribe(response => {
       console.log(response);
 
+    })
+  }
+
+  queryBooks() {
+    this.dataService.getGoogleBooks(this.queryText, this.queryPage).subscribe(booksResponse => {
+      this.books = booksResponse.items;
     })
   }
 }

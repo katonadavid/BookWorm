@@ -4,6 +4,7 @@ using BookWorm;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookWorm.Migrations
 {
     [DbContext(typeof(BookWormContext))]
-    partial class BookWormContextModelSnapshot : ModelSnapshot
+    [Migration("20230101230449_ManyToManyAdded")]
+    partial class ManyToManyAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,7 +49,7 @@ namespace BookWorm.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Creators", (string)null);
+                    b.ToTable("Creators");
                 });
 
             modelBuilder.Entity("BookWorm.Models.Publication", b =>
@@ -98,7 +101,7 @@ namespace BookWorm.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Publishers", (string)null);
+                    b.ToTable("Publishers");
                 });
 
             modelBuilder.Entity("CreatorPublication", b =>
@@ -113,7 +116,7 @@ namespace BookWorm.Migrations
 
                     b.HasIndex("PublicationsId");
 
-                    b.ToTable("CreatorPublication", (string)null);
+                    b.ToTable("CreatorPublication");
                 });
 
             modelBuilder.Entity("BookWorm.Models.Book", b =>
@@ -126,7 +129,7 @@ namespace BookWorm.Migrations
                     b.Property<int>("PageCount")
                         .HasColumnType("int");
 
-                    b.ToTable("Books", (string)null);
+                    b.ToTable("Books");
                 });
 
             modelBuilder.Entity("BookWorm.Models.Record", b =>
@@ -139,7 +142,7 @@ namespace BookWorm.Migrations
                     b.Property<int>("TrackCount")
                         .HasColumnType("int");
 
-                    b.ToTable("Records", (string)null);
+                    b.ToTable("Records");
                 });
 
             modelBuilder.Entity("BookWorm.Models.Publication", b =>
