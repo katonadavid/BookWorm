@@ -1,7 +1,8 @@
 import { CollectionViewer, DataSource } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { BehaviorSubject, catchError, finalize, Observable, tap } from 'rxjs';
+import { ConfirmDialogComponent } from 'src/app/components/dialogs/confirm-dialog/confirm-dialog.component';
 import { Publication } from 'src/app/models/Publication';
 import { DataService } from 'src/app/services/data.service';
 import { NotificationService } from 'src/app/services/notification.service';
@@ -16,23 +17,28 @@ export class PublicationsComponent implements OnInit {
   dataSource: PublicationDataSource;
   displayedColumns = ["image", "title", "creator", "release", "language", "type", "action"];
 
-  constructor(private dataService: DataService, private notificationService: NotificationService) { }
+  constructor(private dataService: DataService, private notificationService: NotificationService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.dataSource = new PublicationDataSource(this.dataService, this.notificationService);
     this.dataSource.loadPublications();
-    this.dataSource.loading$.subscribe(x => console.log(x))
   }
 
   deletePublication(publication: Publication) {
-    console.log(publication);
+    const dialog = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        message: "Do you really want to delete this book?"
+      }
+    });
 
-    if (publication.id) {
-      this.dataService.deleteBook(publication.id).subscribe((...a) => {
-        console.log(a);
-
-      })
-    }
+    dialog.afterClosed().subscribe(confirmed => {
+      if (confirmed && publication.id) {
+        this.dataService.deleteBook(publication.id).subscribe((...a) => {
+          console.log(a);
+          this.dataSource.loadPublications();
+        })
+      }
+    })
   }
 
 }

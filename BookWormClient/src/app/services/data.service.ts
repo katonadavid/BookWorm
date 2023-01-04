@@ -19,7 +19,8 @@ export class DataService {
   }
 
   getGoogleBooks(query: string, page: number = 0) {
-    const params = new HttpParams().set('q', query).set('startIndex', page).set('maxResults', this.maxResultCount).set('printType', 'books');
+    const params = new HttpParams().set('q', query).set('startIndex', page).set('maxResults', this.maxResultCount)
+      .set('printType', 'books').set('orderBy', 'newest');
     return this.http.get<GoogleBooksApiResponse>(this.googleApiBaseUrl, { params });
   }
 

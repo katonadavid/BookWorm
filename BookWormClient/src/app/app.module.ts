@@ -23,6 +23,8 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
 import { PublicationsComponent } from './pages/publications/publications.component';
 import { ErrorSafeImgComponent } from './components/error-safe-img/error-safe-img.component';
+import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/confirm-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { ErrorSafeImgComponent } from './components/error-safe-img/error-safe-im
     FooterComponent,
     AuthorsComponent,
     GetDataComponent,
-    ErrorSafeImgComponent
+    ErrorSafeImgComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +52,7 @@ import { ErrorSafeImgComponent } from './components/error-safe-img/error-safe-im
     MatProgressSpinnerModule,
     MatInputModule,
     MatTableModule,
+    MatDialogModule,
     MatIconModule
   ],
   providers: [],
