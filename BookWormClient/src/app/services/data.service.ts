@@ -23,13 +23,17 @@ export class DataService {
     return this.http.get<GoogleBooksApiResponse>(this.googleApiBaseUrl, { params });
   }
 
-  getBooks() {
-    return this.http.get<Book[]>(this.apiBaseUrl);
-  }
-
-  saveBooks(books: GoogleBookModel[]) {
+  saveGoogleBooks(books: GoogleBookModel[]) {
     return this.http.post<void>(this.apiBaseUrl, books, {
       observe: 'body'
     });
+  }
+
+  deleteBook(id: number) {
+    return this.http.delete(this.apiBaseUrl, { body: [id]});
+  }
+
+  getBooks() {
+    return this.http.get<Book[]>(this.apiBaseUrl);
   }
 }

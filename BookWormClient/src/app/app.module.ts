@@ -8,6 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
 import { PublicationsComponent } from './pages/publications/publications.component';
+import { ErrorSafeImgComponent } from './components/error-safe-img/error-safe-img.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,8 @@ import { PublicationsComponent } from './pages/publications/publications.compone
     NavShellComponent,
     FooterComponent,
     AuthorsComponent,
-    GetDataComponent
+    GetDataComponent,
+    ErrorSafeImgComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +45,8 @@ import { PublicationsComponent } from './pages/publications/publications.compone
     MatToolbarModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
     MatInputModule,
     MatTableModule,
     MatIconModule

@@ -2,13 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using System.Reflection.Metadata;
 
-namespace BookWorm
+namespace BookWorm.DataAccess
 {
     public class BookWormContext : DbContext
     {
         public BookWormContext(DbContextOptions<BookWormContext> options) : base(options)
         {
-            
+
         }
         public DbSet<Publication> Publications { get; set; }
         public DbSet<Creator> Creators { get; set; }

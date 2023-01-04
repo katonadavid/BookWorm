@@ -3,3 +3,36 @@
   width: 30px;
   object-fit: cover;
 }
+
+.table-container-frame {
+  position: relative;
+}
+
+.table-container {
+  position: relative;
+
+  &.loading {
+    min-height: 300px;
+  }
+
+  .image-cell {
+    padding: 4px 0;
+  }
+
+  .no-data-cell {
+    padding: 16px;
+  }
+}
+
+.spinner-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

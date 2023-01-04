@@ -1,0 +1,22 @@
+.img-frame {
+  width: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    display: block;
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+  }
+
+  &.error {
+    img {
+      padding: 30%;
+      height: auto;
+      width: auto;
+    }
+  }
+}

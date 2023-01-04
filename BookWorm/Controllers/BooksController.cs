@@ -1,4 +1,5 @@
-﻿using BookWorm.Enums;
+﻿using BookWorm.DataAccess;
+using BookWorm.Enums;
 using BookWorm.Models;
 using BookWorm.Models.DTOs;
 using Microsoft.AspNetCore.Mvc;
@@ -11,17 +12,18 @@ namespace BookWorm.Controllers
     public class BooksController : Controller
     {
         private readonly BookWormContext _context;
+        private readonly IBookRepository _bookRepository;
 
-        public BooksController(BookWormContext context)
+        public BooksController(BookWormContext context, IBookRepository bookRepository)
         {
             _context = context;
+            _bookRepository = bookRepository;
         }
 
         [HttpGet]
-        public IEnumerable<Book> GetAllBooks()
+        public async Task<IEnumerable<Book>> GetAllBooks()
         {
-            var books = this._context.Books.Include(b => b.Creators);
-            return books;
+            return await this._bookRepository.GetBooks();
             
         }
 
@@ -62,6 +64,13 @@ namespace BookWorm.Controllers
             await this._context.Books.AddRangeAsync(mappedBooks);
             await this._context.SaveChangesAsync();
             return Ok();
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteBooks([FromBody] List<int> bookIds)
+        {
+            await this._bookRepository.DeleteBooks(bookIds);
+            return NoContent();
         }
     }
 }

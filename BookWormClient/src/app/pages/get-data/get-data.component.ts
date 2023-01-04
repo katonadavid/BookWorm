@@ -33,7 +33,7 @@ export class GetDataComponent {
 
   saveBooks() {
     console.log(this.selectedBooks);
-    this.dataService.saveBooks(this.selectedBooks).subscribe(response => {
+    this.dataService.saveGoogleBooks(this.selectedBooks).subscribe(response => {
       console.log(response);
 
     })
