@@ -45,11 +45,26 @@
     <None Update="ClientModels\Publication.ts">
       <CustomToolNamespace>Models\Publication.cs</CustomToolNamespace>
     </None>
+    <None Update="ClientModels\PublicationTableRequestDTO.ts">
+      <CustomToolNamespace>DataAccess\DTOs\PublicationTableRequestDTO.cs</CustomToolNamespace>
+    </None>
+    <None Update="ClientModels\PublicationTableResponseDTO.ts">
+      <CustomToolNamespace>DataAccess\DTOs\PublicationTableResponseDTO.cs</CustomToolNamespace>
+    </None>
+    <None Update="ClientModels\PublicationTableSortColumn.ts">
+      <CustomToolNamespace>DataAccess\DTOs\PublicationTableSortColumn.cs</CustomToolNamespace>
+    </None>
     <None Update="ClientModels\PublicationType.ts">
       <CustomToolNamespace>Enums\PublicationType.cs</CustomToolNamespace>
     </None>
     <None Update="ClientModels\Publisher.ts">
       <CustomToolNamespace>Models\Publisher.cs</CustomToolNamespace>
+    </None>
+    <None Update="ClientModels\SortOrder.ts">
+      <CustomToolNamespace>DataAccess\DTOs\SortOrder.cs</CustomToolNamespace>
+    </None>
+    <None Update="ClientModels\TableResponseDTO.ts">
+      <CustomToolNamespace>DataAccess\DTOs\TableResponseDTO.cs</CustomToolNamespace>
     </None>
     <None Update="ClientModels\VolumeInfo.ts">
       <CustomToolNamespace>Models\DTOs\VolumeInfo.cs</CustomToolNamespace>

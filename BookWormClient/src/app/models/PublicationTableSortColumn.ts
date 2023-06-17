@@ -5,11 +5,9 @@
 /* auto-generated file. do not modify */
 
 
-
-
-
-export class Publisher {
-    id?: string;
-    name?: string;
+export enum PublicationTableSortColumn {
+    Title = 0,
+    PublicationYear = 1,
     
 }
+

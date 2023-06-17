@@ -5,11 +5,9 @@
 /* auto-generated file. do not modify */
 
 
-
-
-
-export class Publisher {
-    id?: string;
-    name?: string;
+export enum SortOrder {
+    Ascending = 0,
+    Descending = 1,
     
 }
+

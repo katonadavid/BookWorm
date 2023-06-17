@@ -1,7 +1,6 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
-import { Book } from "../models/Book";
 import { GoogleBooksApiResponse } from "../models/client-only/GoogleBooksApiRespone";
 import { GoogleBookModel } from "../models/GoogleBook";
 
@@ -9,18 +8,22 @@ import { GoogleBookModel } from "../models/GoogleBook";
 @Injectable({
   providedIn: 'root'
 })
-export class DataService {
+export class GoogleBooksService {
 
   private googleApiBaseUrl = 'https://www.googleapis.com/books/v1/volumes';
-  private apiBaseUrl = environment.apiUrl + 'books/';
+  private apiBaseUrl = environment.apiUrl + 'googlebooks/';
   private maxResultCount = 40;
 
   constructor(private http: HttpClient) {
   }
 
-  getGoogleBooks(query: string, page: number = 0) {
-    const params = new HttpParams().set('q', query).set('startIndex', page).set('maxResults', this.maxResultCount)
+  getGoogleBooks(query: string, page: number = 0, lang?: string) {
+    let params = new HttpParams().set('q', query).set('startIndex', page).set('maxResults', this.maxResultCount)
       .set('printType', 'books').set('orderBy', 'newest');
+
+    if (lang) {
+      params = params.set('langRestrict', lang);
+    }
     return this.http.get<GoogleBooksApiResponse>(this.googleApiBaseUrl, { params });
   }
 
@@ -28,13 +31,5 @@ export class DataService {
     return this.http.post<void>(this.apiBaseUrl, books, {
       observe: 'body'
     });
-  }
-
-  deleteBook(id: number) {
-    return this.http.delete(this.apiBaseUrl, { body: [id]});
-  }
-
-  getBooks() {
-    return this.http.get<Book[]>(this.apiBaseUrl);
   }
 }

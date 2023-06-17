@@ -1,4 +1,6 @@
-﻿namespace BookWorm.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace BookWorm.Models
 {
     [TypewriterEnabled]
     public class Publisher
@@ -8,7 +10,9 @@
             Name = name;
         }
 
-        public int Id { get; set; }
+        public Guid Id { get; set; }
+
+        [Required]
         public string Name { get; set; }
     }
 }

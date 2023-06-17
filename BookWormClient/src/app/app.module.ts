@@ -4,10 +4,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
@@ -25,6 +27,9 @@ import { PublicationsComponent } from './pages/publications/publications.compone
 import { ErrorSafeImgComponent } from './components/error-safe-img/error-safe-img.component';
 import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { JoinPipe } from './pipes/join.pipe';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -37,7 +42,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     AuthorsComponent,
     GetDataComponent,
     ErrorSafeImgComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    JoinPipe
   ],
   imports: [
     BrowserModule,
@@ -53,6 +59,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatInputModule,
     MatTableModule,
     MatDialogModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatCardModule,
+    MatSelectModule,
     MatIconModule
   ],
   providers: [],

@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddScoped<IBookRepository, BookRepository>();
+builder.Services.AddScoped<IPublicationRepository, PublicationRepository>();
 
 builder.Services.AddCors(options => 
     options.AddPolicy("localhost", policy => policy.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader()));

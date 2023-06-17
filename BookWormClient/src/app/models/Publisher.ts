@@ -9,7 +9,7 @@
 
 
 export class Publisher {
-    id?: number;
+    id?: string;
     name?: string;
     
 }

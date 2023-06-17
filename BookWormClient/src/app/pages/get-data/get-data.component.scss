@@ -4,17 +4,51 @@
   }
 }
 
-.book-info {
-  margin: 28px 0;
+.book-grid {
+  display: grid;
+  grid-template: repeat(auto-fill, minmax(400px, 600px)) / repeat(auto-fit, minmax(205px, 1fr));
+  grid-gap: 12px;
 
-  .book-img {
-    height: 300px;
-    max-width: 300px;
+  .book-card {
+    max-height: 600px;
+    overflow: hidden;
+    // width: 200px;
 
-    img {
-      height: 100%;
-      object-fit: contain;
-      box-shadow: 4px 4px 5px -3px rgba(0,0,0,0.75);
+    mat-card-header {
+      min-height: 145px;
+    }
+
+    .book-img {
+      height: 250px;
+      width: 100%;
+      position: relative;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+
+      .blur-image {
+        position: absolute;
+        filter: blur(15px);
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.7;
+      }
+
+      .main-image {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+        display: block;
+        z-index: 1;
+      }
+    }
+
+    .content {
+      height: 200px;
+      overflow: hidden;
     }
   }
 }

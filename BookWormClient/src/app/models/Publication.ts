@@ -7,18 +7,18 @@
 
 
 import { PublicationType } from './PublicationType';
-import { Creator } from './Creator';
 import { Language } from './Language';
 import { Publisher } from './Publisher';
+import { Creator } from './Creator';
 
 export class Publication {
-    id?: number;
+    id?: string;
     title?: string;
     publicationType?: PublicationType;
-    creators?: Creator[];
     language?: Language;
     publisher?: Publisher;
     publicationYear?: number;
     imageLink?: string;
+    creators?: Creator[];
     
 }

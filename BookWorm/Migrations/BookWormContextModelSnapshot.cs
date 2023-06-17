@@ -22,20 +22,18 @@ namespace BookWorm.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.HasSequence("PublicationSequence");
-
             modelBuilder.Entity("BookWorm.Models.Creator", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MiddleName")
@@ -46,17 +44,14 @@ namespace BookWorm.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Creators", (string)null);
+                    b.ToTable("Creators");
                 });
 
             modelBuilder.Entity("BookWorm.Models.Publication", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValueSql("NEXT VALUE FOR [PublicationSequence]");
-
-                    SqlServerPropertyBuilderExtensions.UseSequence(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ImageLink")
                         .HasColumnType("nvarchar(max)");
@@ -70,11 +65,13 @@ namespace BookWorm.Migrations
                     b.Property<int>("PublicationYear")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PublisherId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("PublisherId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.HasKey("Id");
 
@@ -87,33 +84,32 @@ namespace BookWorm.Migrations
 
             modelBuilder.Entity("BookWorm.Models.Publisher", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Publishers", (string)null);
+                    b.ToTable("Publishers");
                 });
 
             modelBuilder.Entity("CreatorPublication", b =>
                 {
-                    b.Property<int>("CreatorsId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CreatorsId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("PublicationsId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("PublicationsId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("CreatorsId", "PublicationsId");
 
                     b.HasIndex("PublicationsId");
 
-                    b.ToTable("CreatorPublication", (string)null);
+                    b.ToTable("CreatorPublication");
                 });
 
             modelBuilder.Entity("BookWorm.Models.Book", b =>
@@ -121,12 +117,14 @@ namespace BookWorm.Migrations
                     b.HasBaseType("BookWorm.Models.Publication");
 
                     b.Property<string>("ISBN")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
 
                     b.Property<int>("PageCount")
                         .HasColumnType("int");
 
-                    b.ToTable("Books", (string)null);
+                    b.ToTable("Books");
                 });
 
             modelBuilder.Entity("BookWorm.Models.Record", b =>
@@ -139,14 +137,16 @@ namespace BookWorm.Migrations
                     b.Property<int>("TrackCount")
                         .HasColumnType("int");
 
-                    b.ToTable("Records", (string)null);
+                    b.ToTable("Records");
                 });
 
             modelBuilder.Entity("BookWorm.Models.Publication", b =>
                 {
                     b.HasOne("BookWorm.Models.Publisher", "Publisher")
                         .WithMany()
-                        .HasForeignKey("PublisherId");
+                        .HasForeignKey("PublisherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Publisher");
                 });

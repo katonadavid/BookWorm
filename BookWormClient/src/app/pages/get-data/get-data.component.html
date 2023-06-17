@@ -8,26 +8,41 @@
       <mat-label>Page</mat-label>
       <input type="number" matInput [(ngModel)]="queryPage">
     </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Language</mat-label>
+      <mat-select [(ngModel)]="queryLang">
+        <mat-option *ngFor="let lang of languageEntries" [value]="lang.value">
+          {{lang.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
     <button mat-raised-button (click)="queryBooks()">Execute query</button>
     <button mat-raised-button (click)="saveBooks()">Save selected books to DB</button>
   </div>
   <div>
-      <mat-checkbox (change)="selectAllBooks($event)" [checked]="true">Select all books</mat-checkbox>
+      <mat-checkbox (change)="selectAllBooks($event)">Select all books</mat-checkbox>
   </div>
-  <div class="book-info" *ngFor="let book of books">
-    <h1>
-      <mat-checkbox (change)="bookChecked($event, book)">{{ book.volumeInfo?.title }}</mat-checkbox>
-    </h1>
-  <h3>
-    <span *ngFor="let author of book.volumeInfo?.authors">{{ author }} </span>
-  </h3>
-  <h4>{{ book.volumeInfo?.publishedDate }}</h4>
-  <h4>
-    <span *ngFor="let category of book.volumeInfo?.categories">{{ category }} </span>
-  </h4>
-  <div class="book-img">
-    <img [src]="book.volumeInfo?.imageLinks?.thumbnail">
-  </div>
-  <p>{{ book.volumeInfo?.description }}</p>
+  <div class="book-grid">
+    <mat-card class="book-card" *ngFor="let element of bookElements">
+      <mat-card-header>
+        <mat-checkbox (change)="bookChecked($event, element)" [checked]="element.checked"></mat-checkbox>
+        <mat-card-title>
+          {{ element.book.volumeInfo?.title }}
+        </mat-card-title>
+        <mat-card-subtitle>{{ element.book.volumeInfo?.authors }}</mat-card-subtitle>
+        <mat-card-subtitle>{{ element.book.volumeInfo?.publishedDate }}</mat-card-subtitle>
+        <mat-card-subtitle>{{ element.book.volumeInfo?.categories }}</mat-card-subtitle>
+      </mat-card-header>
+      <div class="book-img">
+        <img class="blur-image" [src]="element.book.volumeInfo?.imageLinks?.thumbnail">
+        <img class="main-image" mat-card-image [src]="element.book.volumeInfo?.imageLinks?.thumbnail">
+      </div>
+      <mat-card-content>
+        <div class="content"><p>{{ element.book.volumeInfo?.description }}</p></div>
+      </mat-card-content>
+      <!-- <h1>
+        <mat-checkbox (change)="bookChecked($event, book)">{{ book.volumeInfo?.title }}</mat-checkbox>
+      </h1> -->
+    </mat-card>
   </div>
 </div>

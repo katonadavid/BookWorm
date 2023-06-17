@@ -1,4 +1,4 @@
-﻿namespace BookWorm.Models.DTOs
+﻿namespace BookWorm.Models.Google
 {
     [TypewriterEnabled]
     public class VolumeInfo
