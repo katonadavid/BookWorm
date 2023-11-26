@@ -8,6 +8,7 @@ import { ConfirmDialogComponent } from 'src/app/components/dialogs/confirm-dialo
 import { Language } from 'src/app/models/Language';
 import { Publication } from 'src/app/models/Publication';
 import { PublicationTableRequestDTO } from 'src/app/models/PublicationTableRequestDTO';
+import { PublicationTableSortColumn } from 'src/app/models/PublicationTableSortColumn';
 import { PublicationType } from 'src/app/models/PublicationType';
 import { SortOrder } from 'src/app/models/SortOrder';
 import { NotificationService } from 'src/app/services/notification.service';
@@ -23,7 +24,7 @@ export class PublicationsComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
 
   dataSource: PublicationDataSource;
-  displayedColumns = ["image", "title", "creator", "release", "language", "type", "action"];
+  displayedColumns = ["Image", "Title", "Creator", "Release", "Language", "Type", "Action"];
   defaultPageSize = 10;
   languages = Language;
   publicationTypes = PublicationType;
@@ -50,11 +51,18 @@ export class PublicationsComponent implements OnInit, AfterViewInit {
   }
 
   loadLessonsPage() {
+    console.log(PublicationTableSortColumn[this.sort.active as keyof typeof PublicationTableSortColumn]);
+    console.log(this.sort.active as keyof typeof PublicationTableSortColumn);
+    console.log(this.sort.direction);
+
+    console.log(this.sort.direction == 'asc');
+
+
     this.dataSource.loadPublications({
       pageIndex: this.paginator.pageIndex,
       pageSize: this.paginator.pageSize,
-      sortOrder: this.sort.direction == 'asc' ? SortOrder.Ascending : SortOrder.Descending,
-      sortColumn: this.sort.
+      sortOrder: this.sort.direction == 'desc' ? SortOrder.Descending : SortOrder.Ascending,
+      sortColumn: PublicationTableSortColumn[this.sort.active as keyof typeof PublicationTableSortColumn]
     });
   }
 

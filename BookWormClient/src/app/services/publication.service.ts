@@ -20,7 +20,19 @@ export class PublicationService {
   }
 
   getPublications(request: PublicationTableRequestDTO) {
-    const params = new HttpParams().set('pageIndex', request.pageIndex ?? 1).set('pageSize', request.pageSize ?? 10);
+    let params = new HttpParams().set('pageIndex', request.pageIndex ?? 1).set('pageSize', request.pageSize ?? 10);
+
+    if (request.sortOrder) {
+      params = params.set('sortOrder', request.sortOrder);
+    }
+
+    if (request.sortColumn) {
+      params = params.set('sortColumn', request.sortColumn);
+    }
+
+    console.log(params);
+
+
     return this.http.get<PublicationTableResponseDTO>(this.apiBaseUrl, { params });
   }
 }

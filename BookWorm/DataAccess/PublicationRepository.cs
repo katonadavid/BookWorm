@@ -29,13 +29,13 @@ namespace BookWorm.DataAccess
             switch (request.SortColumn)
             {
                 case PublicationTableSortColumn.Title:
-                    query = query.OrderBy(p => p.Title);
+                    query = request.SortOrder == SortOrder.Ascending ? query.OrderBy(p => p.Title) : query.OrderByDescending(p => p.Title);
                     break;
                 case PublicationTableSortColumn.PublicationYear:
-                    query = query.OrderBy(p => p.PublicationYear);
+                    query = request.SortOrder == SortOrder.Ascending ? query.OrderBy(p => p.PublicationYear) : query.OrderByDescending(p => p.PublicationYear);
                     break;
                 default:
-                    query = query;
+                    query = query.OrderBy(p => p.Title);
                     break;
             }
 
